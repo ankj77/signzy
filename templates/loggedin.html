@@ -1,0 +1,24 @@
+<html>
+
+<body>
+<h2>You are : <strong>{{ username }}</strong></h2>
+<h3>your are logged in </h3>
+
+<form name="form" action= "/"  method="POST"> {% csrf_token %}
+
+    <br>
+    <div style="max-width:470px;">
+
+            <button style="border:0px; background-color:#4285F4; margin-top:8%;
+                  height:35px; width:80%;margin-left:19%;" type="submit"
+                    value="Logout">
+                <strong>Logout</strong>
+            </button>
+
+    </div>
+</form>
+
+
+</body>
+
+</html>
