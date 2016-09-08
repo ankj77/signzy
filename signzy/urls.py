@@ -27,8 +27,9 @@ urlpatterns = [
                   url(r'^login/$', LoginApi.as_view(), name='login'),
                   url(r'^logout/$', LogoutView.as_view(), name='logout'),
                   url(r'^signup/$', SignupApi.as_view(), name='signup'),
-              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+              ]
 
-# if settings.DEVELOPMENT :
-#     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += [
+        url('^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT, 'show_indexes': True})
+    ]
