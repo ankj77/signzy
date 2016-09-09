@@ -19,13 +19,15 @@ $("#btn1").click(function () {
 
     $.post("http://localhost:8000/login/",
         {
+            "username": "ddsr17@gmail.com",
             "password": "helloworld",
-            "username": "ddsr17@gmail.com"
         },
         function (response, status) {
             alert("Data: " + response.message.email + "\nStatus: " + status);
             console.log(response.message.email);
-            var dropdown = "<ul class='dropdown-menu'><li>Hi" + response.message.email + "</li><li>My Account</li><li>Logout</li></ul>";
+            var dropdown = "<li class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown' href='#'>+response.message.email +'<span class='caret'></span></a><ul class='dropdown-menu'><li>Hi" + response.message.email + "</li><li>My Account</li><li>Logout</li></ul></li>";
+
+
             $("#currentstatus").empty();
             $("#currentstatus").append(dropdown);
         });
