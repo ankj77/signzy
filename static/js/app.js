@@ -25,7 +25,7 @@ $("#btn1").click(function () {
         function (response, status) {
             alert("Data: " + response.message.email + "\nStatus: " + status);
             console.log(response.message.email);
-            var dropdown = "<li class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown' href='#'>+response.message.email +'<span class='caret'></span></a><ul class='dropdown-menu'><li>Hi" + response.message.email + "</li><li>My Account</li><li>Logout</li></ul></li>";
+            var dropdown = "<li class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown' href='#'>"+"Hi " + response.message.email +"<span class='caret'></span></a><ul class='dropdown-menu'><li>My Account</li><li>Alumni</li><li id='logout'>Logout</li></ul></li>";
 
 
             $("#currentstatus").empty();
@@ -54,7 +54,7 @@ $("#btn2").click(function () {
 });
 
 
-$('#logout').click(function () {
+$('#logout').on('click',function () {
 
     $.ajax({
         type: "GET",

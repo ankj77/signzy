@@ -23,11 +23,10 @@
           <li><a href="#">Contact</a></li>
         </ul>
 
-        {% if  username %}
+        {% if  email %}
             <ul id="currentstatus" class="nav navbar-nav navbar-right">
                 <li ><a href="#">{{ username }} </a></li>
-                <li ><a href="#" ><span id="logout"
-                        class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
+                <li id="logout"><a href="#" ><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
             </ul>
         {% else %}
             <ul id="currentstatus" class="nav navbar-nav navbar-right">
@@ -69,7 +68,7 @@
                             <label><input type="checkbox">Remember me</label>
                         </div>
                         <div class="login-register-box">
-                            <button id="btn1" type="submit" class="btn btn-primary">Login</button>
+                            <button id="btn1" type="submit" data-dismiss="modal" class="btn btn-primary">Login</button>
                         </div>
                         <div class="register-box login-register-box">
                           <span data-dismiss="modal" data-toggle="modal" data-target="#myModal2" id="register-btn">Register</span>
