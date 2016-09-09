@@ -1,4 +1,8 @@
-  #login_form{
+.navbar-inverse{
+    border-radius: 0px;
+}
+
+#login_form{
       width:100%;
      }
 
