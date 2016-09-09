@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title><T></T>itle</title>
+    <title>NSITPortal</title>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href={% static  "css/mystyle.css" %}>
 </head>
@@ -22,10 +22,14 @@
           <li><a href="#">About</a></li>
           <li><a href="#">Contact</a></li>
         </ul>
-        <ul class="nav navbar-nav navbar-right">
+
+
+        <ul id="currentstatus" class="nav navbar-nav navbar-right">
           <li data-toggle="modal" data-target="#myModal2"><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
           <li data-toggle="modal" data-target="#myModal"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         </ul>
+
+
       </div>
     </nav>
 
@@ -45,21 +49,21 @@
                 <div class="form-box">
                     <form>
                         <div class="form-group">
-                            <label for="email">Email address:</label>
-                            <input type="email" class="form-control" id="email">
+                            <label for="email-login">Email address/UserName:</label>
+                            <input type="email" class="form-control" id="email-login">
                         </div>
                         <div class="form-group">
-                            <label for="pwd">Password:</label>
-                            <input type="password" class="form-control" id="pwd">
+                            <label for="pwd-login">Password:</label>
+                            <input type="password" class="form-control" id="pwd-login">
                         </div>
                         <div class="checkbox">
-                            <label><input type="checkbox"> Remember me</label>
+                            <label><input type="checkbox">Remember me</label>
                         </div>
                         <div class="login-register-box">
                             <button id="btn1" type="submit" class="btn btn-primary">Login</button>
                         </div>
                         <div class="register-box login-register-box">
-                          Register
+                          <span data-dismiss="modal" data-toggle="modal" data-target="#myModal2" id="register-btn">Register</span>
                         </div>
 
                     </form>
@@ -90,6 +94,14 @@
             <div class="row">
                 <div class="form-box">
                 <form>
+                    <div class="form-group-inline">
+                        <label for="username">FirstName:</label>
+                        <input type="text" class="form-control" id="firstname">
+                    </div>
+                    <div class="form-group">
+                        <label for="username">LastName:</label>
+                        <input type="text" class="form-control" id="lastname">
+                    </div>
                     <div class="form-group">
                         <label for="username">UserName:</label>
                         <input type="text" class="form-control" id="username">
@@ -126,36 +138,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="{% static  "js/app.js" %}"></script>
 </body>
 
 
-<script>
-    var details = {
-   "first_name":"deepanshu",
-   "last_name":"sardana",
-   "username":"deepanshu",
-   "email":"ddsr17@gmail.com",
-   "password":"hello"
-    }
 
-    $("#btn1").click(function(){
-
-        $.ajax({
-          type: "POST",
-          type: "POST",
-          url: "http://localhost:8000/signup/",
-          data: details,
-          dataType: 'application/json'
-        });
-
-    });
-
-
-    $(".register-box").click(function(){
-        $("#login_form").css('display','none');
-        $("#register_form").css('display','block');
-
-    });
-
-</script>
 </html>
