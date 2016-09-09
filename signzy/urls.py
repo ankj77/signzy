@@ -17,19 +17,22 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.static import serve
 
 from signzy.login.api import LoginApi, LogoutView, SignupApi
 from signzy.login.views import LandingView
 
 urlpatterns = [
-                  url(r'^admin/', admin.site.urls),
-                  url(r'^$', LandingView.as_view(), name='home'),
-                  url(r'^login/$', LoginApi.as_view(), name='login'),
-                  url(r'^logout/$', LogoutView.as_view(), name='logout'),
-                  url(r'^signup/$', SignupApi.as_view(), name='signup'),
-              ]
+    url(r'^admin/', admin.site.urls),
+    url(r'^$', LandingView.as_view(), name='home'),
+    url(r'^login/$', LoginApi.as_view(), name='login'),
+    url(r'^logout/$', LogoutView.as_view(), name='logout'),
+    url(r'^signup/$', SignupApi.as_view(), name='signup'),
+]
+# + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
 
 if settings.DEBUG:
     urlpatterns += [
-        # url('^static/(static?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT, 'show_indexes': True})
+        url('^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT, 'show_indexes': True})
     ]
