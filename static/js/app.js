@@ -51,3 +51,19 @@ $("#btn2").click(function () {
 
 });
 
+
+$('#logout').click(function () {
+
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8000/logout/"
+
+
+    }).function(response)
+    {
+        console.log(response.message
+        )
+    }
+    ;
+})
+
