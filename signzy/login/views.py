@@ -8,8 +8,8 @@ class LandingView(APIView):
         print "Landing Page"
         session = request.session.has_key('username')
         if session:
-            username = request.session['username']
-            return render(request,'tindex.html' , {"username": username})
+            email = request.session['email']
+            return render(request,'tindex.html' , {"email": email})
         else:
             return render(request, 'tindex.html', {})
 

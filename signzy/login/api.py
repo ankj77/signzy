@@ -44,7 +44,7 @@ class LoginApi(APIView):
                 data = {ApiConstant.STATUS: ApiConstant.SUCCESS, ApiConstant.MESSAGE:
                     {'first_name': user.first_name, 'last_name': user.last_name, 'email': user.email,
                      'username': user.username}}
-                request.session['username'] = user.username
+                request.session['email'] = user.email
             else:
                 data = {ApiConstant.STATUS: ApiConstant.SUCCESS,ApiConstant.MESSAGE:UserConstant.USER_PASSWORD_MISMATCH}
             print "user " + str(username_or_email) + " pss " + str(password)
@@ -83,7 +83,7 @@ class SignupApi(APIView):
             user.last_name = signupForm.cleaned_data['last_name']
             user.last_login = datetime.datetime.now()
             user.save()
-            request.session['username'] = username
+            request.session['email'] = email
             return Response({ApiConstant.STATUS: ApiConstant.SUCCESS, ApiConstant.MESSAGE: UserConstant.SIGNUP_SUCCESS})
         else:
             return Response({ApiConstant.STATUS: ApiConstant.ERROR, ApiConstant.MESSAGE: signupForm.errors})
@@ -92,7 +92,7 @@ class SignupApi(APIView):
 class LogoutView(APIView):
     def get(self, request, *args, **kwargs):
         try:
-            del request.session['username']
+            del request.session['email']
             data = {ApiConstant.STATUS: ApiConstant.SUCCESS}
         except:
             data = {ApiConstant.STATUS: ApiConstant.ERROR}
