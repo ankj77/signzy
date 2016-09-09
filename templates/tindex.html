@@ -24,12 +24,12 @@
         </ul>
 
         {% if  email %}
-            <ul id="currentstatus" class="nav navbar-nav navbar-right">
+            <ul id="current-loggedin" class="nav navbar-nav navbar-right">
                 <li ><a href="#">{{ email }} </a></li>
                 <li id="logout"><a href="#" ><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
             </ul>
         {% else %}
-            <ul id="currentstatus" class="nav navbar-nav navbar-right">
+            <ul id="current-login" class="nav navbar-nav navbar-right">
                 <li data-toggle="modal" data-target="#myModal2"><a href="#"><span
                         class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                 <li data-toggle="modal" data-target="#myModal"><a href="#"><span
