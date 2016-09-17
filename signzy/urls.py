@@ -19,8 +19,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.static import serve
 
-from signzy.login.api import LoginApi, LogoutView, SignupApi
-from signzy.login.views import LandingView
+from apps.login.api import LoginApi, LogoutView, SignupApi
+from apps.login.views import LandingView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

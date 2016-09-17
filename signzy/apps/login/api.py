@@ -5,7 +5,7 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from signzy.login.form import SignupForm
+from signzy.apps.login.form import SignupForm
 from signzy.utils.constants import UtilsConstant, ApiConstant, UserConstant
 from .form import LoginForm
 from django.contrib.auth.models import User
@@ -32,7 +32,7 @@ class LoginApi(APIView):
                 try:
                     user = User.objects.get(username=username_or_email)
                 except:
-                    data = {ApiConstant.STATUS: ApiConstant.SUCCESS, ApiConstant.MESSAGE:UserConstant.USER_NOT_FOUND }
+                    data = {ApiConstant.STATUS: ApiConstant.SUCCESS, ApiConstant.MESSAGE: UserConstant.USER_NOT_FOUND}
                     return Response(data)
 
             is_success = False
@@ -46,7 +46,8 @@ class LoginApi(APIView):
                      'username': user.username}}
                 request.session['email'] = user.email
             else:
-                data = {ApiConstant.STATUS: ApiConstant.SUCCESS,ApiConstant.MESSAGE:UserConstant.USER_PASSWORD_MISMATCH}
+                data = {ApiConstant.STATUS: ApiConstant.SUCCESS,
+                        ApiConstant.MESSAGE: UserConstant.USER_PASSWORD_MISMATCH}
             print "user " + str(username_or_email) + " pss " + str(password)
 
         else:
@@ -66,7 +67,8 @@ class SignupApi(APIView):
 
             try:
                 user_with_email = User.objects.get(email=email)
-                return Response({ApiConstant.STATUS: ApiConstant.SUCCESS, ApiConstant.MESSAGE: UserConstant.USER_ALREADY_PRESENT})
+                return Response(
+                    {ApiConstant.STATUS: ApiConstant.SUCCESS, ApiConstant.MESSAGE: UserConstant.USER_ALREADY_PRESENT})
             except:
                 pass
 
