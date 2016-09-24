@@ -4,11 +4,11 @@ from django.contrib.auth import authenticate
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
-from signzy.apps.login.form import SignupForm
-from signzy.utils.constants import UtilsConstant, ApiConstant, UserConstant
-from .form import LoginForm
 from django.contrib.auth.models import User
+
+from login.constants import UserConstant
+from login.models.form import LoginForm, SignupForm
+from utils.constants import UtilsConstant, ApiConstant
 
 
 class LoginApi(APIView):
