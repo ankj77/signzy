@@ -32,6 +32,26 @@ class User(AbstractBaseUser, PermissionsMixin, TimeStampedModel, DefaultPermissi
         verbose_name = 'user'
         verbose_name_plural = 'users'
 
-
     def __str__(self):
         return "%s(%s)" % (self.email, self.username)
+
+    @staticmethod
+    def authenticate(email=None, username=None, password=None):  # Check the username/password and return a User.
+        if username != None and password != None:
+            # Get the user
+            try:
+                user = User.objects.get(username=username)
+                if user.check_password(password):
+                    # logger.info('User is authenticated, logging user in')
+                    return user
+            except User.DoesNotExist:
+                pass
+        elif email != None and password != None:
+            try:
+                user = User.objects.get(email=email)
+                if user.check_password(password):
+                    # logger.info('User is authenticated, logging user in')
+                    return user
+            except User.DoesNotExist:
+                pass
+        return None

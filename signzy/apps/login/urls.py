@@ -17,13 +17,13 @@ from django.conf.urls import url
 from django.conf import settings
 
 # from api.login_api import LoginApi, SignupApi
-from signzy.apps.login.api.login_api import SignupApi
+from signzy.apps.login.api.login_api import SignupApi,LoginApi
 from views.landing_views import LandingView
 
 
 urlpatterns = [
     url(r'^$', LandingView.as_view(), name='home'),
-    # url(r'^login/$', LoginApi.as_view(), name='login'),
+    url(r'^login/$', LoginApi.as_view(), name='login'),
     # url(r'^logout/$', LogoutView.as_view(), name='logout'),
     url(r'^signup/$', SignupApi.as_view(), name='signup'),
 ]

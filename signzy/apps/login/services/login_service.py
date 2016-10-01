@@ -1,20 +1,31 @@
 from django.db.models.query_utils import Q
 from datetime import datetime
 from django.contrib.auth import login, authenticate
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.authentication import BasicAuthentication
 
+from signzy.apps.login.model_helpers.disable import SessionCsrfExemptAuthentication
 from signzy.apps.login.models.user_profile import User
 from signzy.common.constants import UtilsConstant, API
 from signzy.common.exceptions import ExceptionMessage
 
 
+@csrf_exempt
 class LoginService:
-    @staticmethod
-    def validate_login(request, username_or_email, password):
+
+
+
+    # @staticmethod
+    def validate_login(self,request, username_or_email, password):
+        print "username_or_email " + str(username_or_email)
+        print "password " + str(password)
         is_email = UtilsConstant.EMAIL_REGEX.match(username_or_email)
-        if is_email:
-            username_or_email = LoginService.__strip_gmail_special_chars(username_or_email)
-            user = authenticate(username=username_or_email, password=password)
+        if not is_email:
+            print "user %s ", username_or_email
+            print "password %s ", password
+            user = User.authenticate(username=username_or_email, password=password)
         else:
+            username_or_email = self.__strip_gmail_special_chars(username_or_email)
             user = authenticate(email=username_or_email, password=password)
         if user:
             if user.is_active:
@@ -31,15 +42,15 @@ class LoginService:
         else:
             payload = {
                 API.SUCCESS: False,
-                API.MESSAGE: ExceptionMessage.LOGIN_FAILED}
+                API.MESSAGE: ExceptionMessage.USER_PASSWORD_MISMATCH}
         return payload
 
-    @staticmethod
-    def validate_signin(request, username, email, password, first_name, last_name, phone, gender, member_type,
+    # @staticmethod
+    def validate_signin(self,request, username, email, password, first_name, last_name, phone, gender, member_type,
                         is_staff,
                         is_verified):
 
-        user = LoginService.get_existing_user(username, email)
+        user = self.get_existing_user(username, email)
         if user:
             print "user is present"
             payload = {
@@ -85,15 +96,14 @@ class LoginService:
                        'is_verified': user.is_verified, 'is_staff': user.is_staff}
         return payload
 
-    @staticmethod
-    def get_existing_user(username, email):
+    def get_existing_user(self,username, email):
         # email = LoginService.__strip_gmail_special_chars(email)
         user = User.objects.filter(Q(username=username) | Q(email=email)).first()
         # user = User.objects.filter(email=email).first()
         return user
 
-    @staticmethod
-    def __strip_gmail_special_chars(email):
+    # @staticmethod
+    def __strip_gmail_special_chars(self,email):
         import re
         if "gmail" in email:
             stripped_email = email.replace("@gmail.com", "")
