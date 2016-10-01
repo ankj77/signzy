@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>NSITPortal</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href={% static  "css/mystyle.css" %}>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">NSITALumniPortal</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+
+        {% if  email %}
+            <ul id="current-loggedin" class="nav navbar-nav navbar-right">
+                <li ><a href="#">{{ email }} </a></li>
+                <li id="logout"><a href="#" ><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
+            </ul>
+        {% else %}
+            <ul id="current-login" class="nav navbar-nav navbar-right">
+                <li data-toggle="modal" data-target="#myModal2"><a href="#"><span
+                        class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li data-toggle="modal" data-target="#myModal"><a href="#"><span
+                        class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+        {% endif %} }}
+
+
+      </div>
+    </nav>
+
+<!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Sign In</h4>
+          </div>
+          <div class="modal-body">
+            <div id="login_form" class="container">
+            <div class="row">
+                <div class="form-box">
+                    <form>
+                        <div class="form-group">
+                            <label for="email-login">Email address/UserName:</label>
+                            <input type="email" class="form-control" id="email-login">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd-login">Password:</label>
+                            <input type="password" class="form-control" id="pwd-login">
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox">Remember me</label>
+                        </div>
+                        <div class="login-register-box">
+                            <button id="btn1" type="submit" data-dismiss="modal" class="btn btn-primary">Login</button>
+                        </div>
+                        <div class="register-box login-register-box">
+                          <span data-dismiss="modal" data-toggle="modal" data-target="#myModal2" id="register-btn">Register</span>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+     <div id="myModal2" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Register</h4>
+          </div>
+          <div class="modal-body">
+            <div id="register_form" class="container">
+            <div class="row">
+                <div class="form-box">
+                <form>
+                    <div class="form-group-inline">
+                        <label for="username">FirstName:</label>
+                        <input type="text" class="form-control" id="firstname">
+                    </div>
+                    <div class="form-group">
+                        <label for="username">LastName:</label>
+                        <input type="text" class="form-control" id="lastname">
+                    </div>
+                    <div class="form-group">
+                        <label for="username">UserName:</label>
+                        <input type="text" class="form-control" id="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email address:</label>
+                        <input type="email" class="form-control" id="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Password:</label>
+                        <input type="password" class="form-control" id="pwd">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Renter Password:</label>
+                        <input type="text" class="form-control" id="re_pwd">
+                    </div>
+                    <div class="flash_message" style="display: none">Passwords do not match</div>
+                     <button id="btn2" type="submit" class="btn btn-primary">Register</button>
+                </form>
+                </div>
+            </div>
+            </div>
+           </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+       </div>
+     </div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="{% static  "js/app.js" %}"></script>
+</body>
+
+
+
+</html>

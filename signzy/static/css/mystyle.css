@@ -1,0 +1,26 @@
+.navbar-inverse{
+    border-radius: 0px;
+}
+
+#login_form{
+      width:100%;
+     }
+
+ .form-box{
+        width:50%;
+        margin: 0 auto;
+    }
+    .login-register-box{
+        display:inline-block;
+    }
+
+    #register_form{
+        width:100%;
+    }
+    .register-box{
+        margin-left:3%;
+        cursor: pointer;
+    }
+    .register-box:hover{
+        color:dodgerblue;
+    }
