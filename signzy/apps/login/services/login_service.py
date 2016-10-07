@@ -10,13 +10,10 @@ from signzy.common.constants import UtilsConstant, API
 from signzy.common.exceptions import ExceptionMessage
 
 
-@csrf_exempt
 class LoginService:
 
-
-
-    # @staticmethod
-    def validate_login(self,request, username_or_email, password):
+    @staticmethod
+    def validate_login(request, username_or_email, password):
         print "username_or_email " + str(username_or_email)
         print "password " + str(password)
         is_email = UtilsConstant.EMAIL_REGEX.match(username_or_email)
@@ -46,7 +43,7 @@ class LoginService:
         return payload
 
     # @staticmethod
-    def validate_signin(self,request, username, email, password, first_name, last_name, phone, gender, member_type,
+    def validate_signin(self, request, username, email, password, first_name, last_name, phone, gender, member_type,
                         is_staff,
                         is_verified):
 
@@ -96,14 +93,14 @@ class LoginService:
                        'is_verified': user.is_verified, 'is_staff': user.is_staff}
         return payload
 
-    def get_existing_user(self,username, email):
+    def get_existing_user(self, username, email):
         # email = LoginService.__strip_gmail_special_chars(email)
         user = User.objects.filter(Q(username=username) | Q(email=email)).first()
         # user = User.objects.filter(email=email).first()
         return user
 
     # @staticmethod
-    def __strip_gmail_special_chars(self,email):
+    def __strip_gmail_special_chars(self, email):
         import re
         if "gmail" in email:
             stripped_email = email.replace("@gmail.com", "")
